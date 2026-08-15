@@ -1,12 +1,12 @@
-# 🛡️ IntraWindows Secure Shield - Linux CLI & Headless Client
+# 🛡️ IntraLinux Secure Shield - Linux CLI & Headless Client
 
-[Turkish (TR)](#-intrawindows-güvenli-kalkan---linux-cli-ve-arayüzsüz-istemci-tr) | [English (EN)](#-intrawindows-secure-shield---linux-cli-and-headless-client-en)
+[Turkish (TR)](#-intralinux-güvenli-kalkan---linux-cli-ve-arayüzsüz-istemci-tr) | [English (EN)](#-intralinux-secure-shield---linux-cli-and-headless-client-en)
 
 ---
 
-## 🛡️ IntraWindows Güvenli Kalkan - Linux CLI ve Arayüzsüz İstemci (TR)
+## 🛡️ IntraLinux Güvenli Kalkan - Linux CLI ve Arayüzsüz İstemci (TR)
 
-Bu dizin, **IntraWindows** projesinin Linux işletim sistemleri (Sunucular, Ubuntu, Debian, CentOS vb.) için hazırlanmış olan komut satırı (CLI), arayüzsüz (headless) ve SSH uyumlu istemci sürümünü içerir. 
+Bu dizin, **IntraLinux** projesinin Linux işletim sistemleri (Sunucular, Ubuntu, Debian, CentOS vb.) için hazırlanmış olan komut satırı (CLI), arayüzsüz (headless) ve SSH uyumlu istemci sürümünü içerir. 
 
 Sunucularda veya arayüzü olmayan (headless) sistemlerde tek bir komutla aç/kapa yapabilir, arka planda servis olarak çalıştırabilir veya SSH oturumunuzu anında proxy arkasına alabilirsiniz.
 
@@ -21,22 +21,22 @@ Sunucularda veya arayüzü olmayan (headless) sistemlerde tek bir komutla aç/ka
 
 1. **Dosyalara Çalıştırma Yetkisi Verin:**
    ```bash
-   chmod +x intrawindows.sh bin/intra-linuxdpi
+   chmod +x intralinux.sh bin/intra-linuxdpi
    ```
 
 2. **İstemciyi Arka Planda Başlatın:**
    ```bash
-   ./intrawindows.sh start
+   ./intralinux.sh start
    ```
 
 3. **Çalışma Durumunu Kontrol Edin:**
    ```bash
-   ./intrawindows.sh status
+   ./intralinux.sh status
    ```
 
 4. **Durdurmak İçin:**
    ```bash
-   ./intrawindows.sh stop
+   ./intralinux.sh stop
    ```
 
 ---
@@ -46,13 +46,13 @@ Sunucuda çalışırken wget, curl veya apt-get gibi araçların proxy üzerinde
 
 * **Terminal Oturumunu Proxy Arkasına Al:**
   ```bash
-  eval $(./intrawindows.sh env)
+  eval $(./intralinux.sh env)
   ```
   *(Bu komut `http_proxy`, `https_proxy` ve `all_proxy` ortam değişkenlerini otomatik ayarlar)*
 
 * **Terminal Proxy Ayarlarını İptal Et:**
   ```bash
-  eval $(./intrawindows.sh unenv)
+  eval $(./intralinux.sh unenv)
   ```
 
 ---
@@ -62,19 +62,19 @@ Programın sistem açılışında arka planda otomatik olarak çalışmasını i
 
 1. **Servis Olarak Kaydet (sudo yetkisi gerekir):**
    ```bash
-   sudo ./intrawindows.sh install
+   sudo ./intralinux.sh install
    ```
 
 2. **Servisi Yönetmek İçin Standart Komutlar:**
    ```bash
-   sudo systemctl start intrawindows
-   sudo systemctl stop intrawindows
-   sudo systemctl status intrawindows
+   sudo systemctl start intralinux
+   sudo systemctl stop intralinux
+   sudo systemctl status intralinux
    ```
 
 3. **Servisi Kaldırmak İçin:**
    ```bash
-   sudo ./intrawindows.sh uninstall
+   sudo ./intralinux.sh uninstall
    ```
 
 ---
@@ -82,16 +82,16 @@ Programın sistem açılışında arka planda otomatik olarak çalışmasını i
 ### 🎨 GUI Masaüstü Entegrasyonu (Gnome kullanan sistemler için)
 Masaüstü Linux (Ubuntu Desktop, Fedora vb.) kullanıyorsanız, sistem genelindeki proxy ayarlarını tek tıkla yapılandırabilirsiniz:
 ```bash
-./intrawindows.sh enable-gui   # Gnome sistem proxy ayarlarını elle SOCKS5/HTTP yönlendirir
-./intrawindows.sh disable-gui  # Proxy ayarlarını devre dışı bırakır (Varsayılana döner)
+./intralinux.sh enable-gui   # Gnome sistem proxy ayarlarını elle SOCKS5/HTTP yönlendirir
+./intralinux.sh disable-gui  # Proxy ayarlarını devre dışı bırakır (Varsayılana döner)
 ```
 
 ---
 ---
 
-## 🛡️ IntraWindows Secure Shield - Linux CLI and Headless Client (EN)
+## 🛡️ IntraLinux Secure Shield - Linux CLI and Headless Client (EN)
 
-This directory contains the Command Line Interface (CLI), headless, and SSH-friendly client edition of **IntraWindows** built for Linux operating systems (Ubuntu, Debian, CentOS, servers, etc.).
+This directory contains the Command Line Interface (CLI), headless, and SSH-friendly client edition of **IntraLinux** built for Linux operating systems (Ubuntu, Debian, CentOS, servers, etc.).
 
 It allows you to start/stop the secure tunnel with a single command, run it as a system service in the background, or instantly proxy your current SSH session.
 
@@ -106,22 +106,22 @@ It allows you to start/stop the secure tunnel with a single command, run it as a
 
 1. **Grant Executable Permissions:**
    ```bash
-   chmod +x intrawindows.sh bin/intra-linuxdpi
+   chmod +x intralinux.sh bin/intra-linuxdpi
    ```
 
 2. **Start the Tunnel in Background:**
    ```bash
-   ./intrawindows.sh start
+   ./intralinux.sh start
    ```
 
 3. **Check the Status:**
    ```bash
-   ./intrawindows.sh status
+   ./intralinux.sh status
    ```
 
 4. **Stop the Tunnel:**
    ```bash
-   ./intrawindows.sh stop
+   ./intralinux.sh stop
    ```
 
 ---
@@ -131,35 +131,35 @@ If you want CLI tools like curl, wget, or package managers (apt, yum) to route t
 
 * **Proxy the Active Terminal Shell:**
   ```bash
-  eval $(./intrawindows.sh env)
+  eval $(./intralinux.sh env)
   ```
   *(This sets the `http_proxy`, `https_proxy`, and `all_proxy` environment variables for your current session)*
 
 * **Disable Terminal Shell Proxy:**
   ```bash
-  eval $(./intrawindows.sh unenv)
+  eval $(./intralinux.sh unenv)
   ```
 
 ---
 
 ### ⚙️ Installing as a Systemd Service (Autostart)
-To run IntraWindows as a system service that launches automatically at system boot, install the systemd daemon:
+To run IntraLinux as a system service that launches automatically at system boot, install the systemd daemon:
 
 1. **Install Service (requires sudo privileges):**
    ```bash
-   sudo ./intrawindows.sh install
+   sudo ./intralinux.sh install
    ```
 
 2. **Manage the Service:**
    ```bash
-   sudo systemctl start intrawindows
-   sudo systemctl stop intrawindows
-   sudo systemctl status intrawindows
+   sudo systemctl start intralinux
+   sudo systemctl stop intralinux
+   sudo systemctl status intralinux
    ```
 
 3. **Uninstall the Service:**
    ```bash
-   sudo ./intrawindows.sh uninstall
+   sudo ./intralinux.sh uninstall
    ```
 
 ---
@@ -167,6 +167,6 @@ To run IntraWindows as a system service that launches automatically at system bo
 ### 🎨 GUI Desktop Configuration (For GNOME DE)
 If you are on a desktop Linux system with Gnome, configure system-wide proxy settings easily:
 ```bash
-./intrawindows.sh enable-gui   # Enables Gnome proxy settings and points to localhost ports
-./intrawindows.sh disable-gui  # Disables Gnome proxy settings
+./intralinux.sh enable-gui   # Enables Gnome proxy settings and points to localhost ports
+./intralinux.sh disable-gui  # Disables Gnome proxy settings
 ```

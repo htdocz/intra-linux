@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==============================================================================
-# IntraWindows - Linux CLI & headless Proxy Manager
+# IntraLinux - Linux CLI & headless Proxy Manager
 # ==============================================================================
 
 # CONFIGURATION
@@ -12,9 +12,9 @@ DOH_URL="https://cloudflare-dns.com/dns-query"
 BOOTSTRAP_IPS="1.1.1.1,1.0.0.1"
 
 # PID File Path
-PID_FILE="/var/run/intrawindows.pid"
+PID_FILE="/var/run/intralinux.pid"
 if [ "$EUID" -ne 0 ]; then
-    PID_FILE="$HOME/.intrawindows.pid"
+    PID_FILE="$HOME/.intralinux.pid"
 fi
 
 BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/bin"
@@ -32,11 +32,11 @@ is_running() {
 
 start() {
     if is_running; then
-        echo "IntraWindows is already running (PID: $(cat "$PID_FILE"))."
+        echo "IntraLinux is already running (PID: $(cat "$PID_FILE"))."
         return 0
     fi
 
-    echo "Starting IntraWindows..."
+    echo "Starting IntraLinux..."
     if [ ! -f "$BIN_PATH" ]; then
         echo "Error: Binary not found at $BIN_PATH"
         exit 1
@@ -55,11 +55,11 @@ start() {
     sleep 0.5
 
     if is_running; then
-        echo "IntraWindows started successfully (PID: $PID)."
+        echo "IntraLinux started successfully (PID: $PID)."
         echo "SOCKS5 Proxy: 127.0.0.1:$SOCKS_PORT"
         echo "HTTP Proxy: 127.0.0.1:$HTTP_PORT"
     else
-        echo "Error: Failed to start IntraWindows. Check port conflicts."
+        echo "Error: Failed to start IntraLinux. Check port conflicts."
         rm -f "$PID_FILE"
         exit 1
     fi
@@ -67,12 +67,12 @@ start() {
 
 stop() {
     if ! is_running; then
-        echo "IntraWindows is not running."
+        echo "IntraLinux is not running."
         return 0
     fi
 
     PID=$(cat "$PID_FILE")
-    echo "Stopping IntraWindows (PID: $PID)..."
+    echo "Stopping IntraLinux (PID: $PID)..."
     kill "$PID"
     rm -f "$PID_FILE"
     echo "Stopped."
@@ -96,11 +96,11 @@ install_service() {
 
     echo "Installing systemd service..."
     SCRIPT_PATH=$(readlink -f "$0")
-    SERVICE_FILE="/etc/systemd/system/intrawindows.service"
+    SERVICE_FILE="/etc/systemd/system/intralinux.service"
 
     cat <<EOF > "$SERVICE_FILE"
 [Unit]
-Description=IntraWindows Secure Shield Proxy Service
+Description=IntraLinux Secure Shield Proxy Service
 After=network.target
 
 [Service]
@@ -115,12 +115,12 @@ WantedBy=multi-user.target
 EOF
 
     systemctl daemon-reload
-    systemctl enable intrawindows
-    echo "IntraWindows systemd service installed & enabled successfully."
+    systemctl enable intralinux
+    echo "IntraLinux systemd service installed & enabled successfully."
     echo "Usage commands:"
-    echo "  sudo systemctl start intrawindows"
-    echo "  sudo systemctl stop intrawindows"
-    echo "  sudo systemctl status intrawindows"
+    echo "  sudo systemctl start intralinux"
+    echo "  sudo systemctl stop intralinux"
+    echo "  sudo systemctl status intralinux"
 }
 
 uninstall_service() {
@@ -130,11 +130,11 @@ uninstall_service() {
     fi
 
     echo "Uninstalling systemd service..."
-    systemctl stop intrawindows 2>/dev/null
-    systemctl disable intrawindows 2>/dev/null
-    rm -f /etc/systemd/system/intrawindows.service
+    systemctl stop intralinux 2>/dev/null
+    systemctl disable intralinux 2>/dev/null
+    rm -f /etc/systemd/system/intralinux.service
     systemctl daemon-reload
-    echo "IntraWindows service removed."
+    echo "IntraLinux service removed."
 }
 
 enable_gnome_proxy() {
@@ -165,14 +165,14 @@ print_env() {
     echo "export http_proxy="http://127.0.0.1:$HTTP_PORT""
     echo "export https_proxy="http://127.0.0.1:$HTTP_PORT""
     echo "export all_proxy="socks5://127.0.0.1:$SOCKS_PORT""
-    echo "echo 'IntraWindows CLI proxy environment variables enabled.'"
+    echo "echo 'IntraLinux CLI proxy environment variables enabled.'"
 }
 
 print_unenv() {
     echo "unset http_proxy"
     echo "unset https_proxy"
     echo "unset all_proxy"
-    echo "echo 'IntraWindows CLI proxy environment variables disabled.'"
+    echo "echo 'IntraLinux CLI proxy environment variables disabled.'"
 }
 
 usage() {
